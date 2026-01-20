@@ -1,6 +1,6 @@
 import pytest
 
 
-@pytest.mark
+@pytest.mark.smoke
 def test_smoke():
     pass
