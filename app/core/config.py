@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = "deribit_prices"
     POSTGRES_USER: str = "my_user"
     POSTGRES_PASSWORD: str = "my_password"
-    POSTGRES_HOST: str = "postgres"
+    POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: str = 5432
     CELERY_BROKER_URL: str = "redis://redis:6379/0"
     CELERY_RESULT_BACKEND: str = "redis://redis:6379/1"
