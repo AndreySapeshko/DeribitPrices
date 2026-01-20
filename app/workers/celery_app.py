@@ -8,6 +8,8 @@ celery_app = Celery(
     backend=settings.CELERY_RESULT_BACKEND,
 )
 
+import app.workers.tasks
+
 celery_app.conf.timezone = "UTC"
 celery_app.conf.beat_schedule = {
     "fetch-prices-every-minute": {
@@ -15,3 +17,8 @@ celery_app.conf.beat_schedule = {
         "schedule": 60.0,
     }
 }
+
+
+@celery_app.task(bind=True)
+def debug_task(self):
+    print(f"Request: {self.request!r}")

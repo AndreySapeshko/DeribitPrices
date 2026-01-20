@@ -62,7 +62,7 @@ services:
     env_file: .env
     networks:
       - internal
-    command: celery -A app.workers worker -l info
+    command: ["celery", "-A", "app.workers.celery_app.celery_app", "worker", "-l", "INFO"]
     restart: unless-stopped
     depends_on:
       postgres:
@@ -81,7 +81,7 @@ services:
     env_file: .env
     networks:
       - internal
-    command: celery -A app.workers beat -l info
+    command: ["celery", "-A", "app.workers.celery_app.celery_app", "beat", "-l", "INFO"]
     restart: unless-stopped
     depends_on:
       postgres:
