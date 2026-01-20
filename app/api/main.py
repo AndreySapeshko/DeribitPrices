@@ -1,14 +1,13 @@
 from fastapi import FastAPI
 
+from app.api.routes import router
 from app.core.config import settings
 from app.db.init_db import init_models
 from app.db.retry import wait_for_db
 from app.db.session import make_engine
 
-# from app.api.routes import router
-
 app = FastAPI(title="Deribit Prices API")
-# app.include_router(router)
+app.include_router(router)
 
 
 @app.on_event("startup")
