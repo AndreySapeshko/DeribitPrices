@@ -1,15 +1,18 @@
 import asyncio
+import os
 
 import pytest
 import pytest_asyncio
+from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
 
-from app.core.config import settings
 from app.db.models import Base
 
-TEST_DATABASE_URL = (
-    f"postgresql+asyncpg://{settings.POSTGRES_USER}:" f"{settings.POSTGRES_PASSWORD}@localhost:5432/test_db"
-)
+load_dotenv()
+POSTGRES_USER = os.environ.get("POSTGRES_USER", default="my_username")
+POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD", default="my_password")
+
+TEST_DATABASE_URL = f"postgresql+asyncpg://{POSTGRES_USER}:" f"{POSTGRES_PASSWORD}@localhost:5432/test_db"
 
 
 @pytest.fixture(scope="session")

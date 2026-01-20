@@ -1,6 +1,6 @@
-import pytest
-
 from unittest.mock import AsyncMock
+
+import pytest
 
 from app.services.price_service import PriceService
 
